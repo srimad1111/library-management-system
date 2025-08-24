@@ -14,6 +14,16 @@ def display_books():
     print("\nAvailable Books:")
     print(books)
 
+def add_book():
+    books = load_books()
+    bid = int(input("Enter Book ID: "))
+    title = input("Enter Title: ")
+    author = input("Enter Author: ")
+    copies = int(input("Enter Number of Copies: "))
+    books = pd.concat([books, pd.DataFrame({"BookID": [bid], "Title": [title], "Author": [author], "Available": [copies], "Borrowed": [0]})], ignore_index=True)
+    save_books(books)
+    print("Book added successfully!")
+
 while True:
     print("\n===== Library Management System =====")
     print("1. Display Books")
