@@ -1,3 +1,19 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+
+BOOKS_FILE = "books.csv"
+
+def load_books():
+    return pd.read_csv(BOOKS_FILE)
+
+def save_books(books):
+    books.to_csv(BOOKS_FILE, index=False)
+
+def display_books():
+    books = load_books()
+    print("\nAvailable Books:")
+    print(books)
+
 while True:
     print("\n===== Library Management System =====")
     print("1. Display Books")
