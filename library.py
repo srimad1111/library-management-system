@@ -39,6 +39,18 @@ def borrow_book():
     else:
         print("Invalid Book ID")
 
+def return_book():
+    books = load_books()
+    bid = int(input("Enter Book ID to return: "))
+    if bid in books["BookID"].values:
+        idx = books[books["BookID"] == bid].index[0]
+        books.at[idx, "Available"] += 1
+        books.at[idx, "Borrowed"] -= 1
+        save_books(books)
+        print(f"You returned '{books.at[idx, 'Title']}'")
+    else:
+        print("Invalid Book ID")
+
 while True:
     print("\n===== Library Management System =====")
     print("1. Display Books")
