@@ -51,6 +51,16 @@ def return_book():
     else:
         print("Invalid Book ID")
 
+def visualize_data():
+    books = load_books()
+    plt.bar(books["Title"], books["Borrowed"], color='skyblue')
+    plt.xlabel("Books")
+    plt.ylabel("Borrowed Count")
+    plt.title("Most Borrowed Books")
+    plt.xticks(rotation=45)
+    plt.tight_layout()
+    plt.show()
+
 while True:
     print("\n===== Library Management System =====")
     print("1. Display Books")
