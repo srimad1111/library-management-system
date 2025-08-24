@@ -24,6 +24,21 @@ def add_book():
     save_books(books)
     print("Book added successfully!")
 
+def borrow_book():
+    books = load_books()
+    bid = int(input("Enter Book ID to borrow: "))
+    if bid in books["BookID"].values:
+        idx = books[books["BookID"] == bid].index[0]
+        if books.at[idx, "Available"] > 0:
+            books.at[idx, "Available"] -= 1
+            books.at[idx, "Borrowed"] += 1
+            save_books(books)
+            print(f"You borrowed '{books.at[idx, 'Title']}'")
+        else:
+            print("Book not available!")
+    else:
+        print("Invalid Book ID")
+
 while True:
     print("\n===== Library Management System =====")
     print("1. Display Books")
